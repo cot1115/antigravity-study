@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="대학생들을 위한 학교 주변 음식점 랜덤 추천 서비스! 오늘 점심, 저녁 메뉴 결정을 도와드립니다.">
+  <title>오늘 뭐 먹지? 🍳 | 대학생 맞춤형 맛집 랜덤 추천</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="app-container">
+    <!-- Header -->
+    <header>
+      <h1><span class="logo-emoji">🍳</span>오늘 뭐 먹지?</h1>
+      <p>결정 장애 해결사! 필터를 선택하고 추천을 받아보세요.</p>
+    </header>
+
+    <!-- Filter Form Section -->
+    <section class="filter-section" id="filter-section">
+      <!-- 1. Food Categories (Multi-select Checkboxes) -->
+      <div class="filter-group">
+        <div class="filter-title">
+          <span>🍕</span> 음식 종류 (다중 선택 가능)
+        </div>
+        <div class="chips-container">
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="한식" checked>
+            <span class="chip-text">한식</span>
+          </label>
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="중식" checked>
+            <span class="chip-text">중식</span>
+          </label>
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="일식" checked>
+            <span class="chip-text">일식</span>
+          </label>
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="양식" checked>
+            <span class="chip-text">양식</span>
+          </label>
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="분식" checked>
+            <span class="chip-text">분식</span>
+          </label>
+          <label class="chip-label">
+            <input type="checkbox" name="category" value="기타" checked>
+            <span class="chip-text">기타</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 2. Location Options (Radio Buttons) -->
+      <div class="filter-group">
+        <div class="filter-title">
+          <span>📍</span> 위치 선택
+        </div>
+        <div class="chips-container">
+          <label class="chip-label">
+            <input type="radio" name="location" value="all" checked>
+            <span class="chip-text">전체</span>
+          </label>
+          <label class="chip-label">
+            <input type="radio" name="location" value="학식">
+            <span class="chip-text">학식</span>
+          </label>
+          <label class="chip-label">
+            <input type="radio" name="location" value="정문">
+            <span class="chip-text">정문</span>
+          </label>
+          <label class="chip-label">
+            <input type="radio" name="location" value="후문">
+            <span class="chip-text">후문</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 3. Price limit Options (Radio Buttons) -->
+      <div class="filter-group">
+        <div class="filter-title">
+          <span>💸</span> 가격 조건
+        </div>
+        <div class="chips-container">
+          <label class="chip-label">
+            <input type="radio" name="price" value="any" checked>
+            <span class="chip-text">제한 없음</span>
+          </label>
+          <label class="chip-label">
+            <input type="radio" name="price" value="10k">
+            <span class="chip-text">1만원 이하</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trigger Button Area -->
+    <div class="action-container" id="action-container">
+      <button type="button" class="btn-primary" id="btn-recommend">
+        <span>✨</span> 오늘 메뉴 추천받기!
+      </button>
+      <div class="error-message" id="error-message">조건에 맞는 맛집이 없어요! 필터를 넓혀보세요 😭</div>
+    </div>
+
+    <!-- Roulette Loading Effect Area -->
+    <section class="roulette-container" id="roulette-container">
+      <div class="roulette-box">
+        <div class="roulette-text" id="roulette-text">짜장면?</div>
+      </div>
+      <div class="roulette-spinner"></div>
+      <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">맛집을 열심히 고르는 중...</p>
+    </section>
+
+    <!-- Result Card Area -->
+    <section class="result-container" id="result-container">
+      <div class="result-card">
+        <div class="result-header">
+          <span class="category-tag" id="res-category">한식</span>
+          <span class="location-tag" id="res-location">📍 정문</span>
+        </div>
+        <h2 class="restaurant-name" id="res-name">진짜 맛있는 해장국</h2>
+        
+        <div class="menu-info">
+          <div class="menu-label">대표 추천 메뉴</div>
+          <div class="menu-name" id="res-menu">얼큰 뼈해장국</div>
+        </div>
+
+        <div class="price-info">
+          <span>가격</span>
+          <span class="price-value" id="res-price">9,000원</span>
+        </div>
+      </div>
+
+      <!-- Result Buttons -->
+      <div class="result-actions">
+        <button type="button" class="btn-secondary btn-retry" id="btn-retry">
+          <span>🔄</span> 다시 고르기
+        </button>
+        <button type="button" class="btn-secondary btn-map" id="btn-map">
+          <span>🗺️</span> 위치 보기
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 오늘 뭐 먹지? | 대학생 점심/저녁 메뉴 추천 도우미 🍔</p>
+    </footer>
+  </main>
+
+  <!-- Load Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
